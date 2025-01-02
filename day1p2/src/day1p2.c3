@@ -32,12 +32,6 @@ fn int main(String[] args)
 		list2.push(nums[1].to_int()!!);
 	}
 
-	//List(<int>) list1;
-	//List(<int>) list2;
-
-	//list1.add_array({3,4,2,1,3,3});
-	//list2.add_array({4,3,5,3,9,3});
-
 	List(<int>) small_sums;
 	List(<int>) similarity_scores;
 

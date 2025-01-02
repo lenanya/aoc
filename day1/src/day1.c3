@@ -24,8 +24,6 @@ fn void add_smallest(List(<int>) *small, List(<int>) *list1, List(<int>) *list2)
 	list1.remove_at(index1);
 	list2.remove_at(index2);
 
-	//io::printfn("1: %d\n2: %d\n", smallest1, smallest2);
-
 	small.push(math::abs(smallest1 - smallest2));
 }
 
