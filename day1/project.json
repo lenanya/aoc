@@ -1,13 +1,15 @@
 {
   "langrev": "1",
   "warnings":  [ "no-unused" ],
-  "dependencies":  [  ],
   "authors":  [ "lena <lenashimizu@gmx.net>" ],
   "version": "0.1.0",
   "sources":  [ "src/**" ],
   "output": "build",
   "targets": {
     "day1": {
+      "type": "executable"
+    },
+    "day1p2": {
       "type": "executable"
     }
   },

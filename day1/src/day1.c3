@@ -3,6 +3,7 @@ import std::io;
 import std::math;
 import std::collections; 
 
+// part 1
 fn void add_smallest(List(<int>) *small, List(<int>) *list1, List(<int>) *list2) {
 	int smallest1 = 2 << 25;
 	int smallest2 = 2 << 25;
@@ -28,8 +29,9 @@ fn void add_smallest(List(<int>) *small, List(<int>) *list1, List(<int>) *list2)
 	small.push(math::abs(smallest1 - smallest2));
 }
 
-fn int main(String[] args)
-{
+
+
+fn int main(String[] args) {
 	assert(args.len > 1);
 	String fp = args[1];
 	List(<int>) list1;
@@ -44,6 +46,7 @@ fn int main(String[] args)
 	}
 
 	List(<int>) small_sums;
+	List(<int>) similarity_scores;
 
 	usz full_length = list1.len();
 
