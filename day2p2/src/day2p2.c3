@@ -6,43 +6,29 @@ def Ilist = List(<int>);
 
 fn bool is_safe(List(<int>) r, bool is_top) {
 	int failures = 0;
-	bool asc = false;
-	if (r[1] > r[0]) {
-		asc = true;
-	}
+	bool asc = r[1] > r[0];
 	for (usz i = 0; i < r.len() - 1; ++i) {
-		if (asc) {
-			if (r[i+1] <= r[i]) {
-				failures += 1;
-			}
-			if (r[i+1] - r[i] > 3) {
-				failures += 1;
-			}
-		} else {
-			if (r[i+1] >= r[i]) {
-				failures += 1;
-			}
-			if (r[i] - r[i + 1] > 3) {
-				failures += 1;
-			}
+		switch {
+			case asc && r[i+1] <= r[i]: failures++;
+			case asc && r[i+1] - r[i] > 3: failures++;
+			case !asc && r[i+1] >= r[i]: failures++;
+			case !asc && r[i] - r[i+1] > 3: failures++;
 		}
 	}
-	if (failures >= 1) {
-		if (is_top) {
+
+	switch {
+		case failures && is_top: 
 			for (usz j = 0; j < r.len(); ++j) {
 				Ilist temp;
-				foreach (i: r) {
-					temp.push(i);
+				foreach (idx, i: r) {
+					if (idx != j) temp.push(i);
 				}
-				temp.remove_at(j);
-				if (is_safe(temp, false)) {
-					return true;
-				}
+				if (is_safe(temp, is_top=false)) return true;
 			}
-		}
-		return false;
+			return false;
+		case failures && !is_top: return false;
+		default: return true;
 	}
-	return true;
 }
 
 fn int main(String[] args)
@@ -60,11 +46,10 @@ fn int main(String[] args)
 		}
 		reports.push(vals);
 	}
+	
 	int sum = 0;
 	foreach (r: reports) {
-		if (is_safe(r, true)) {
-			sum += 1;
-		}
+		if (is_safe(r, is_top=true)) sum++;
 	}
 
 	io::printn(sum);

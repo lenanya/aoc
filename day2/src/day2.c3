@@ -5,25 +5,13 @@ import std::collections;
 def Ilist = List(<int>);
 
 fn bool is_safe(List(<int>) r) {
-	bool asc = false;
-	if (r[1] > r[0]) {
-		asc = true;
-	}
+	bool asc = r[1] > r[0];
 	for (usz i = 0; i < r.len() - 1; ++i) {
-		if (asc) {
-			if (r[i+1] <= r[i]) {
-				return false;
-			}
-			if (r[i+1] - r[i] > 3) {
-				return false;
-			}
-		} else {
-			if (r[i+1] >= r[i]) {
-				return false;
-			}
-			if (r[i] - r[i + 1] > 3) {
-				return false;
-			}
+		switch {
+			case asc && r[i+1] <= r[i]: return false;
+			case asc && r[i+1] - r[i] > 3: return false;
+			case !asc && r[i+1] >= r[i]: return false;
+			case !asc && r[i] - r[i+1] > 3: return false;
 		}
 	}
 	return true;
