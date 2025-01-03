@@ -23,7 +23,7 @@ fn bool is_safe(List(<int>) r, bool is_top) {
 				foreach (idx, i: r) {
 					if (idx != j) temp.push(i);
 				}
-				if (is_safe(temp, is_top=false)) return true;
+				if (is_safe(temp, is_top: false)) return true;
 			}
 			return false;
 		case failures && !is_top: return false;
@@ -46,10 +46,10 @@ fn int main(String[] args)
 		}
 		reports.push(vals);
 	}
-	
+
 	int sum = 0;
 	foreach (r: reports) {
-		if (is_safe(r, is_top=true)) sum++;
+		if (is_safe(r, is_top: true)) sum++;
 	}
 
 	io::printn(sum);
